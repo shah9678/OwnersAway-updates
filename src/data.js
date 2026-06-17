@@ -116,11 +116,11 @@ export const BUSINESS_TYPES = [
 ];
 
 export const CONTACT = {
-  email: "inquiry@ownerawayusa.com",
+  email: "ownerawaystartup@gmail.com",
   phone: "(207) 555-0142",
   hours: "Mon–Fri, 9am–6pm ET · 24/7 support line during active coverage",
 };
 
 
-export const INQUIRY_EMAIL = "inquiry@ownerawayusa.com";
-export const WEB3FORMS_ACCESS_KEY = ""; 
+export const INQUIRY_EMAIL = "ownerawaystartup@gmail.com";
+export const WEB3FORMS_ACCESS_KEY = "bab9a0b5-5b80-449a-91ab-6ba42718bed8"; 
