@@ -5,6 +5,10 @@ import { NAV } from "../data";
 
 export default function Footer() {
   const half = Math.ceil(NAV.length / 2);
+  // Match the header: land at the top of the destination page on every click
+  // (covers clicking the link for the page you're already on, too).
+  const toTop = () => window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+
   return (
     <footer className="oa-footer">
       <div className="oa-container">
@@ -17,7 +21,9 @@ export default function Footer() {
             <h4>Explore</h4>
             <ul>
               {NAV.slice(0, half).map((n) => (
-                <li key={n.to}><Link to={n.to}>{n.label}</Link></li>
+                <li key={n.to}>
+                  <Link to={n.to} onClick={toTop}>{n.label}</Link>
+                </li>
               ))}
             </ul>
           </div>
@@ -25,7 +31,9 @@ export default function Footer() {
             <h4>More</h4>
             <ul>
               {NAV.slice(half).map((n) => (
-                <li key={n.to}><Link to={n.to}>{n.label}</Link></li>
+                <li key={n.to}>
+                  <Link to={n.to} onClick={toTop}>{n.label}</Link>
+                </li>
               ))}
             </ul>
           </div>
