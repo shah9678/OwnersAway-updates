@@ -14,15 +14,24 @@ export default function App() {
   const { pathname } = useLocation();
   const mainRef = useRef(null);
 
-  // Scroll to the top of the new page BEFORE paint, so you never see it
-  // land mid-page (e.g. on the CTA form at the bottom).
-  useLayoutEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
-
-  // Move focus to the main region for keyboard / screen-reader users.
+  // Take over scroll handling from the browser entirely.
   useEffect(() => {
-    if (mainRef.current) mainRef.current.focus();
+    if ("scrollRestoration" in window.history) {
+      window.history.scrollRestoration = "manual";
+    }
+  }, []);
+
+  // Jump (not animate) to the top on every route change, bypassing
+  // any CSS `scroll-behavior: smooth` that could be interrupted.
+  useLayoutEffect(() => {
+    const html = document.documentElement;
+    const prev = html.style.scrollBehavior;
+    html.style.scrollBehavior = "auto";   // disable smooth for this jump
+    window.scrollTo(0, 0);
+    html.style.scrollBehavior = prev;
+
+    // Focus for accessibility WITHOUT letting focus scroll the page.
+    if (mainRef.current) mainRef.current.focus({ preventScroll: true });
   }, [pathname]);
 
   return (
