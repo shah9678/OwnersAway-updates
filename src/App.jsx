@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useLayoutEffect, useRef } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -14,10 +14,14 @@ export default function App() {
   const { pathname } = useLocation();
   const mainRef = useRef(null);
 
-  // On every route change: scroll to top and move focus to the main region
-  // so keyboard and screen-reader users land at the new page content.
-  useEffect(() => {
+  // Scroll to the top of the new page BEFORE paint, so you never see it
+  // land mid-page (e.g. on the CTA form at the bottom).
+  useLayoutEffect(() => {
     window.scrollTo(0, 0);
+  }, [pathname]);
+
+  // Move focus to the main region for keyboard / screen-reader users.
+  useEffect(() => {
     if (mainRef.current) mainRef.current.focus();
   }, [pathname]);
 
