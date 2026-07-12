@@ -1,18 +1,12 @@
 import { useState } from "react";
 import { AlertCircle, CheckCircle2, Loader2 } from "lucide-react";
-import { BUSINESS_TYPES, INQUIRY_EMAIL, WEB3FORMS_ACCESS_KEY } from "../data";
-
-const FIELDS = [
-  { name: "fullName", label: "Full name", type: "text", required: true, auto: "name" },
-  { name: "businessName", label: "Business name", type: "text", required: true, auto: "organization" },
-  { name: "businessType", label: "Business type", type: "select", required: true },
-  { name: "location", label: "City, state", type: "text", required: false, auto: "address-level2" },
-  { name: "email", label: "Email", type: "email", required: true, auto: "email" },
-  { name: "phone", label: "Phone number", type: "tel", required: false, auto: "tel" },
-];
+import { BUSINESS_TYPES, REVENUE_RANGES, INQUIRY_EMAIL, WEB3FORMS_ACCESS_KEY } from "../data";
 
 export default function ApplyForm() {
-  const empty = { fullName: "", businessName: "", businessType: "", location: "", email: "", phone: "" };
+  const empty = {
+    fullName: "", businessName: "", businessType: "", location: "",
+    email: "", phone: "", revenue: "", concern: "",
+  };
   const [values, setValues] = useState(empty);
   const [errors, setErrors] = useState({});
   const [formError, setFormError] = useState("");
@@ -41,9 +35,11 @@ export default function ApplyForm() {
       `Full name: ${values.fullName}`,
       `Business name: ${values.businessName}`,
       `Business type: ${values.businessType}`,
-      `City, state: ${values.location || "—"}`,
+      `City, State: ${values.location || "—"}`,
       `Email: ${values.email}`,
       `Phone: ${values.phone || "—"}`,
+      `Estimated weekly revenue: ${values.revenue || "—"}`,
+      `Biggest concern: ${values.concern || "—"}`,
     ].join("\n");
     const subject = `Pilot coverage request — ${values.businessName}`;
     window.location.href =
@@ -54,7 +50,6 @@ export default function ApplyForm() {
     const e = validate();
     setErrors(e);
     if (Object.keys(e).length) return;
-
     setSending(true);
     setFormError("");
     try {
@@ -72,7 +67,6 @@ export default function ApplyForm() {
         const data = await res.json();
         if (!data.success) throw new Error(data.message || "Submission failed");
       } else {
-        // No service key configured — open the visitor's email client instead.
         mailtoFallback();
       }
       setSubmitted(true);
@@ -85,7 +79,7 @@ export default function ApplyForm() {
 
   if (submitted) {
     return (
-      <div className="oa-form-success" role="status" aria-live="polite">
+      <div className="oa-form-card oa-form-success" role="status" aria-live="polite">
         <CheckCircle2 size={44} aria-hidden="true" />
         <h3>Application received</h3>
         <p>Thanks, {values.fullName.split(" ")[0]}. A member of our team will reach
@@ -94,49 +88,62 @@ export default function ApplyForm() {
     );
   }
 
+  const field = (name, label, type, opts = {}) => {
+    const errId = `${name}-err`;
+    const invalid = !!errors[name];
+    return (
+      <div className={`oa-field ${opts.full ? "oa-full" : ""}`}>
+        <label htmlFor={name}>
+          {label}{opts.required && <span className="oa-req" aria-hidden="true"> *</span>}
+        </label>
+        {type === "select" ? (
+          <select
+            id={name} value={values[name]}
+            aria-required={opts.required} aria-invalid={invalid}
+            aria-describedby={invalid ? errId : undefined}
+            onChange={(ev) => update(name, ev.target.value)}
+          >
+            <option value="" disabled>Select…</option>
+            {opts.options.map((t) => <option key={t} value={t}>{t}</option>)}
+          </select>
+        ) : type === "textarea" ? (
+          <textarea
+            id={name} value={values[name]} rows={4}
+            aria-invalid={invalid}
+            onChange={(ev) => update(name, ev.target.value)}
+          />
+        ) : (
+          <input
+            id={name} type={type} value={values[name]}
+            autoComplete={opts.auto} aria-required={opts.required} aria-invalid={invalid}
+            aria-describedby={invalid ? errId : undefined}
+            onChange={(ev) => update(name, ev.target.value)}
+            onKeyDown={(ev) => ev.key === "Enter" && submit()}
+          />
+        )}
+        {invalid && (
+          <span id={errId} className="oa-err" role="alert">
+            <AlertCircle size={13} aria-hidden="true" /> {errors[name]}
+          </span>
+        )}
+      </div>
+    );
+  };
+
   return (
-    <div aria-describedby="form-help">
+    <div className="oa-form-card" aria-describedby="form-help">
       <p id="form-help" className="oa-sr-only">Fields marked with an asterisk are required.</p>
       <div className="oa-form-grid">
-        {FIELDS.map((f) => {
-          const errId = `${f.name}-err`;
-          const invalid = !!errors[f.name];
-          return (
-            <div key={f.name} className="oa-field">
-              <label htmlFor={f.name}>
-                {f.label}{f.required && <span className="oa-req" aria-hidden="true"> *</span>}
-              </label>
-              {f.type === "select" ? (
-                <select
-                  id={f.name} value={values[f.name]}
-                  aria-required={f.required} aria-invalid={invalid}
-                  aria-describedby={invalid ? errId : undefined}
-                  onChange={(ev) => update(f.name, ev.target.value)}
-                >
-                  <option value="" disabled>Select…</option>
-                  {BUSINESS_TYPES.map((t) => <option key={t} value={t}>{t}</option>)}
-                </select>
-              ) : (
-                <input
-                  id={f.name} type={f.type} value={values[f.name]}
-                  autoComplete={f.auto} aria-required={f.required} aria-invalid={invalid}
-                  aria-describedby={invalid ? errId : undefined}
-                  onChange={(ev) => update(f.name, ev.target.value)}
-                  onKeyDown={(ev) => ev.key === "Enter" && submit()}
-                />
-              )}
-              {invalid && (
-                <span id={errId} className="oa-err" role="alert">
-                  <AlertCircle size={13} aria-hidden="true" /> {errors[f.name]}
-                </span>
-              )}
-            </div>
-          );
-        })}
+        {field("fullName", "Full name", "text", { required: true, auto: "name" })}
+        {field("businessName", "Business name", "text", { required: true, auto: "organization" })}
+        {field("businessType", "Business type", "select", { required: true, options: BUSINESS_TYPES })}
+        {field("location", "City, State", "text", { auto: "address-level2" })}
+        {field("email", "Email", "email", { required: true, auto: "email" })}
+        {field("phone", "Phone number", "tel", { auto: "tel" })}
+        {field("revenue", "Estimated weekly revenue range", "select", { options: REVENUE_RANGES, full: true })}
+        {field("concern", "What is your biggest concern when stepping away from your business?", "textarea", { full: true })}
       </div>
-
       {formError && <p className="oa-form-error" role="alert">{formError}</p>}
-
       <button type="button" className="oa-btn oa-btn-gold oa-btn-block" onClick={submit} disabled={sending}>
         {sending
           ? (<><Loader2 size={18} aria-hidden="true" style={{ animation: "spin 1s linear infinite" }} /> Sending…</>)

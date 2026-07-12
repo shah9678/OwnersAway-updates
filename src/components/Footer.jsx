@@ -1,10 +1,14 @@
-import { Link } from "react-router-dom";
 import Logo from "./Logo";
 import { FacebookIcon, InstagramIcon, LinkedinIcon } from "./SocialIcons";
-import { NAV } from "../data";
+import { NAV, SOCIALS } from "../data";
 
 export default function Footer() {
-  const half = Math.ceil(NAV.length / 2);
+  const go = (e, hash) => {
+    e.preventDefault();
+    const el = document.querySelector(hash);
+    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+    history.replaceState(null, "", hash);
+  };
 
   return (
     <footer className="oa-footer">
@@ -17,31 +21,30 @@ export default function Footer() {
           <div>
             <h4>Explore</h4>
             <ul>
-              {NAV.slice(0, half).map((n) => (
+              {NAV.map((n) => (
                 <li key={n.to}>
-                  <Link to={n.to}>{n.label}</Link>
+                  <a href={n.to} onClick={(e) => go(e, n.to)}>{n.label}</a>
                 </li>
               ))}
+              <li><a href="#apply" onClick={(e) => go(e, "#apply")}>Request Coverage</a></li>
             </ul>
           </div>
           <div>
-            <h4>More</h4>
+            <h4>Contact</h4>
             <ul>
-              {NAV.slice(half).map((n) => (
-                <li key={n.to}>
-                  <Link to={n.to}>{n.label}</Link>
-                </li>
-              ))}
+              <li><a href="https://ownerawayusa.com">ownerawayusa.com</a></li>
+              <li>
+                <div className="oa-social">
+                  <a href={SOCIALS.linkedin} target="_blank" rel="noopener noreferrer" aria-label="OwnerAway on LinkedIn"><LinkedinIcon /></a>
+                  <a href={SOCIALS.instagram} target="_blank" rel="noopener noreferrer" aria-label="OwnerAway on Instagram"><InstagramIcon /></a>
+                  <a href={SOCIALS.facebook} target="_blank" rel="noopener noreferrer" aria-label="OwnerAway on Facebook"><FacebookIcon /></a>
+                </div>
+              </li>
             </ul>
           </div>
         </div>
         <div className="oa-footer-bottom">
           <p className="oa-copy">© {new Date().getFullYear()} OwnerAway. All rights reserved.</p>
-          <div className="oa-social">
-            <a href="#" aria-label="OwnerAway on Facebook"><FacebookIcon /></a>
-            <a href="#" aria-label="OwnerAway on Instagram"><InstagramIcon /></a>
-            <a href="#" aria-label="OwnerAway on LinkedIn"><LinkedinIcon /></a>
-          </div>
         </div>
       </div>
     </footer>

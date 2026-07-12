@@ -1,51 +1,58 @@
 import { useState } from "react";
-import { NavLink, Link } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import Logo from "./Logo";
 import ThemeToggle from "./ThemeToggle";
-import { NAV } from "../data";
+import { NAV, TOPBAR } from "../data";
 
 export default function Header() {
   const [open, setOpen] = useState(false);
-  const linkClass = ({ isActive }) => (isActive ? "is-active" : undefined);
+
+  const go = (e, hash) => {
+    e.preventDefault();
+    setOpen(false);
+    const el = document.querySelector(hash);
+    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+    history.replaceState(null, "", hash);
+  };
 
   return (
-    <header className="oa-header">
-      <div className="oa-container oa-header-inner">
-        <Logo />
-        <nav className="oa-nav" aria-label="Primary">
-          {NAV.map((n) => (
-            <NavLink key={n.to} to={n.to} end={n.to === "/"} className={linkClass}>
-              {n.label}
-            </NavLink>
-          ))}
-        </nav>
-        <div className="oa-header-right">
-          <ThemeToggle />
-          <Link to="/contact" className="oa-btn oa-btn-navy oa-header-cta">Request Coverage</Link>
-          <button
-            className="oa-menu-btn"
-            aria-label={open ? "Close menu" : "Open menu"}
-            aria-expanded={open}
-            aria-controls="mobile-nav"
-            onClick={() => setOpen((o) => !o)}
-          >
-            {open ? <X size={24} /> : <Menu size={24} />}
-          </button>
+    <>
+      <div className="oa-topbar">{TOPBAR}</div>
+      <header className="oa-header">
+        <div className="oa-container oa-header-inner">
+          <Logo />
+          <nav className="oa-nav" aria-label="Primary">
+            {NAV.map((n) => (
+              <a key={n.to} href={n.to} onClick={(e) => go(e, n.to)}>{n.label}</a>
+            ))}
+          </nav>
+          <div className="oa-header-right">
+            <ThemeToggle />
+            <a href="#apply" className="oa-btn oa-btn-navy oa-header-cta" onClick={(e) => go(e, "#apply")}>
+              Request Coverage
+            </a>
+            <button
+              className="oa-menu-btn"
+              aria-label={open ? "Close menu" : "Open menu"}
+              aria-expanded={open}
+              aria-controls="mobile-nav"
+              onClick={() => setOpen((o) => !o)}
+            >
+              {open ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
         </div>
-      </div>
-      {open && (
-        <nav id="mobile-nav" className="oa-mobile-nav" aria-label="Mobile">
-          {NAV.map((n) => (
-            <NavLink key={n.to} to={n.to} end={n.to === "/"} className={linkClass} onClick={() => setOpen(false)}>
-              {n.label}
-            </NavLink>
-          ))}
-          <Link to="/contact" className="oa-btn oa-btn-gold" onClick={() => setOpen(false)}>
-            Request Coverage
-          </Link>
-        </nav>
-      )}
-    </header>
+        {open && (
+          <nav id="mobile-nav" className="oa-mobile-nav" aria-label="Mobile">
+            {NAV.map((n) => (
+              <a key={n.to} href={n.to} onClick={(e) => go(e, n.to)}>{n.label}</a>
+            ))}
+            <a href="#apply" className="oa-btn oa-btn-gold" onClick={(e) => go(e, "#apply")}>
+              Request Coverage
+            </a>
+          </nav>
+        )}
+      </header>
+    </>
   );
 }

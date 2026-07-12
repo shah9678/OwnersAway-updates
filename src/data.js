@@ -1,126 +1,136 @@
-import {
-  ShieldCheck, Users, BarChart3, ClipboardList, Search, CalendarCheck, Plane,
-  Settings, UserCog, Lock, MessageCircle, Truck, CircleDollarSign, Wrench,
-  FileText, KeyRound, Axe, PersonStanding, Gamepad2, Building2, UserCheck,
-  ClipboardCheck, MailOpen, AlertTriangle, Handshake, Eye, Rocket, Headphones,
-} from "lucide-react";
-
 export const NAV = [
-  { label: "Home", to: "/" },
-  { label: "How It Works", to: "/how-it-works" },
-  { label: "Services", to: "/services" },
-  { label: "Industries", to: "/industries" },
-  { label: "Why OwnerAway", to: "/why" },
-  { label: "FAQ", to: "/faq" },
-  { label: "Contact", to: "/contact" },
+  { label: "How It Works", to: "#how" },
+  { label: "Services", to: "#services" },
+  { label: "Industries", to: "#industries" },
+  { label: "Trust", to: "#trust" },
+  { label: "FAQ", to: "#faq" },
 ];
 
-export const HERO_FEATURES = [
-  { icon: ShieldCheck, title: "Peace of Mind", sub: "Your business is in good hands." },
-  { icon: Users, title: "Trained Operators", sub: "Experienced, vetted & reliable." },
-  { icon: BarChart3, title: "Daily Reporting", sub: "Stay informed every day." },
-];
+export const TOPBAR = "🚀 Now accepting limited pilot conversations with qualified owner-operated businesses.";
+
+export const HERO = {
+  badge: "Temporary Operational Coverage",
+  lede: "Temporary operational coverage for owner-dependent businesses when owners need to step away for vacation, family emergencies, medical leave, or other extended absences.",
+  trust: [
+    { title: "Peace of Mind", sub: "Your business is in good hands." },
+    { title: "Operational Leadership", sub: "Coverage designed around your process." },
+    { title: "Daily Reporting", sub: "Stay informed while away." },
+  ],
+};
+
+export const PROBLEM = {
+  title: "The Problem",
+  strong: "You built the business. But if you cannot leave it, the business owns you.",
+  body: "Many owners avoid taking real time off because they worry about staff, customers, cash handling, daily decisions, and operations falling apart while they are away.",
+};
+
+export const SOLUTION = {
+  title: "The OwnerAway Solution",
+  strong: "Temporary operational leadership when you need to step away.",
+  body: "We help prepare a coverage plan, step into day-to-day oversight, keep your operation moving, and provide owner updates while you are away.",
+};
 
 export const STEPS = [
-  {
-    icon: ClipboardList,
-    title: "Tell Us About Your Business",
-    sub: "Share your operations, needs, and coverage dates.",
-    detail: "A short intake call where you walk us through how your venue runs day to day — your hours, your team, your tools, and the dates you'd like to step away.",
-  },
-  {
-    icon: Search,
-    title: "We Review Your Operations",
-    sub: "We learn your business and assess requirements.",
-    detail: "We shadow your processes and document the essentials: opening and closing routines, POS, vendors, and the judgment calls that usually land on your desk.",
-  },
-  {
-    icon: CalendarCheck,
-    title: "We Prepare a Coverage Plan",
-    sub: "We build a custom plan for a smooth handoff.",
-    detail: "You get a written playbook and a named operator (or team) matched to your venue, plus a clear escalation path for anything outside the day-to-day.",
-  },
-  {
-    icon: Plane,
-    title: "You Take Off, We Take Over",
-    sub: "We manage operations and send daily updates.",
-    detail: "While you're away we keep the doors open and the team supported, and you receive a concise end-of-day report so nothing is a surprise when you return.",
-  },
-];
-
-export const SERVICES = [
-  { icon: Settings, label: "Daily Operations", desc: "Opening checklists, floor coverage, and keeping the day running on schedule." },
-  { icon: UserCog, label: "Staff Supervision", desc: "Shift oversight, breaks, and on-the-spot guidance so your team stays supported." },
-  { icon: Lock, label: "Opening / Closing Procedures", desc: "Secure, consistent open and close routines following your exact playbook." },
-  { icon: MessageCircle, label: "Customer Issue Handling", desc: "Calm, professional resolution of complaints, refunds, and escalations." },
-  { icon: Truck, label: "Vendor Coordination", desc: "Deliveries, service calls, and supplier check-ins handled in your absence." },
-  { icon: CircleDollarSign, label: "Cash / POS Management", desc: "Drawer counts, reconciliations, and end-of-day reporting you can trust." },
-  { icon: Wrench, label: "Maintenance Oversight", desc: "First response on equipment issues and coordination of repairs." },
-  { icon: FileText, label: "Daily Reports & Updates", desc: "A clear end-of-day summary so you always know how things went." },
-];
-
-export const INDUSTRIES = [
-  { icon: KeyRound, label: "Escape Rooms", desc: "Game resets, guest briefings, and smooth flow between bookings." },
-  { icon: Axe, label: "Axe Throwing Venues", desc: "Safety-first coaching, lane management, and waiver oversight." },
-  { icon: PersonStanding, label: "Trampoline Parks", desc: "Court supervision, rotations, and rule enforcement on busy floors." },
-  { icon: Users, label: "Family Entertainment Centers", desc: "Coordination across attractions, food service, and the front desk." },
-  { icon: Gamepad2, label: "Indoor Activity Venues", desc: "Arcades, VR, and mixed-use spaces run to your standards." },
-  { icon: Building2, label: "Hotels / Motels", desc: "Front-desk and housekeeping coordination — launching soon.", note: "Coming Soon" },
-];
-
-export const TRUST = [
-  { icon: UserCheck, label: "Background-Checked Operators" },
-  { icon: ShieldCheck, label: "Confidentiality & NDA" },
-  { icon: ClipboardCheck, label: "Clear Scope of Work" },
-  { icon: MailOpen, label: "Daily Owner Updates" },
-  { icon: Lock, label: "Limited System Access" },
-  { icon: AlertTriangle, label: "Emergency Escalation Plan" },
-  { icon: ShieldCheck, label: "Insurance Coverage*" },
-];
-
-export const VALUES = [
-  { icon: Handshake, title: "Built for owners, not corporations", desc: "We work the way independent venues actually run — flexible, hands-on, and human." },
-  { icon: Users, title: "Operators who've run venues", desc: "Our people have stood behind the counter and closed up at night. They get it." },
-  { icon: Eye, title: "Radical transparency", desc: "Daily reports, a clear scope of work, and an escalation plan agreed in advance." },
-  { icon: Rocket, title: "Start small with a pilot", desc: "Try a short, low-risk coverage window before committing to anything longer." },
+  { title: "Tell Us About Your Business", sub: "Share your operations, team, concerns, and coverage dates." },
+  { title: "We Review Operations", sub: "We learn procedures, access needs, staff structure, and escalation rules." },
+  { title: "We Prepare a Coverage Plan", sub: "Scope, reporting, responsibilities, and limits are documented before coverage." },
+  { title: "You Step Away", sub: "Your business continues operating while you receive daily updates." },
 ];
 
 export const STATS = [
-  { value: 100, suffix: "%", label: "Vetted & background-checked operators" },
-  { value: 24, suffix: "/7", label: "Owner support line during coverage" },
-  { value: 1, suffix: "-day", label: "Average response to applications" },
-  { value: 6, suffix: "", label: "Entertainment industries served" },
+  { strong: "Customized", sub: "Coverage plan for each business" },
+  { strong: "Daily", sub: "Owner updates during coverage" },
+  { strong: "Defined", sub: "Scope before coverage begins" },
+  { strong: "Confidential", sub: "NDA-first approach" },
 ];
 
-export const TESTIMONIALS = [
-  { quote: "First real week off in three years. The daily reports meant I never had to wonder what was happening on the floor.", who: "Owner, Escape Room" },
-  { quote: "Our closing routine is specific and they nailed it from night one. The handoff playbook was genuinely thorough.", who: "Owner, Axe Throwing Venue" },
-  { quote: "Staff felt supported instead of abandoned. That's what sold me — they manage people, not just tasks.", who: "Owner, Family Entertainment Center" },
+export const SERVICES = [
+  { icon: "⚙️", title: "Daily Operations", desc: "Opening, closing, workflow, team direction, and operational rhythm." },
+  { icon: "👥", title: "Staff Supervision", desc: "On-site oversight so your existing team stays aligned and accountable." },
+  { icon: "📊", title: "Daily Owner Updates", desc: "Simple reporting so you know what happened without managing every detail." },
+  { icon: "💬", title: "Customer Issues", desc: "Support for escalations, service issues, and customer experience concerns." },
+  { icon: "🚚", title: "Vendor Coordination", desc: "Basic vendor communication using your approved process." },
+  { icon: "🚨", title: "Emergency Escalation", desc: "Clear rules for situations requiring owner approval or urgent action." },
 ];
 
-export const FAQ = [
-  { q: "How does coverage actually work?", a: "After a short intake and review of your operations, we build a written playbook and assign an operator matched to your venue. They run the day-to-day during your agreed dates and send you an end-of-day report." },
-  { q: "How do you vet your operators?", a: "Every operator is background-checked and has hands-on experience running entertainment or hospitality venues. We match operators to your specific format before any coverage begins." },
-  { q: "How long can you cover my business?", a: "Anywhere from a few days to extended periods. Most owners start with a short pilot window to build confidence before scheduling longer coverage." },
-  { q: "What does it cost?", a: "Pricing depends on your business type, the length of coverage, and operational complexity. Apply for a pilot and we'll give you a clear, no-surprise quote." },
-  { q: "What if there's an emergency?", a: "Every engagement includes an emergency escalation plan agreed with you in advance, so your operator knows exactly who to call and when." },
-  { q: "Do you sign an NDA?", a: "Yes. Confidentiality and a signed NDA are standard, and operators are given only the limited system access they need to do the job." },
-  { q: "Which industries do you serve?", a: "Escape rooms, axe-throwing venues, trampoline parks, family entertainment centers, and indoor activity venues today — with hotels and motels coming soon." },
-  { q: "How do I get started?", a: "Head to the Contact page and apply for pilot coverage. We respond within one business day to talk through your needs." },
+export const INDUSTRIES = [
+  { icon: "🎯", title: "Entertainment Venues", desc: "Owner-operated group activity venues." },
+  { icon: "🔐", title: "Escape Rooms", desc: "Booking-driven venues with daily procedures." },
+  { icon: "🪓", title: "Axe Throwing", desc: "Event-based locations with staff and safety needs." },
+  { icon: "🎳", title: "Family Entertainment Centers", desc: "Indoor activity venues where consistency matters." },
 ];
 
-export const BUSINESS_TYPES = [
-  "Escape Room", "Axe Throwing Venue", "Trampoline Park",
-  "Family Entertainment Center", "Indoor Activity Venue",
-  "Hotel / Motel", "Other",
+export const CONCERNS = [
+  { q: "\u201CWhat if an employee does not show up while I am gone?\u201D", a: "We define escalation rules, communication flow, and coverage responsibilities before your absence." },
+  { q: "\u201CWho handles customer complaints?\u201D", a: "We follow your approved customer handling process and escalate major decisions to you." },
+  { q: "\u201CHow do I know what happened each day?\u201D", a: "You receive daily updates covering operations, staff, issues, and anything requiring attention." },
 ];
 
-export const CONTACT = {
-  email: "ownerawaystartup@gmail.com",
-  phone: "(207) 555-0142",
-  hours: "Mon–Fri, 9am–6pm ET · 24/7 support line during active coverage",
+export const TRUST = [
+  { title: "Confidentiality / NDA", desc: "Confidentiality protections for sensitive business information." },
+  { title: "Defined Scope", desc: "Responsibilities, limits, reporting, and escalation rules documented upfront." },
+  { title: "Limited System Access", desc: "Access is scoped to what is needed and agreed upon before coverage begins." },
+  { title: "Daily Updates", desc: "Owner receives operational updates while away." },
+  { title: "Emergency Plan", desc: "Clear escalation path for urgent issues." },
+  { title: "Coverage Plan", desc: "Each coverage engagement is customized to the business." },
+];
+
+export const FOUNDER = {
+  badge: "Founder Story",
+  title: "Built by an Owner Who Understands the Problem",
+  body: "OwnerAway was created from a real business-owner problem: wanting time away without feeling like the business would fall apart. The goal is to help entrepreneurs step away with confidence while maintaining standards, customer experience, and business continuity.",
+  points: [
+    "Created for owner-dependent businesses",
+    "Focused on operational coverage, not generic staffing",
+    "Starting with entertainment and experience-based businesses",
+  ],
 };
 
+export const COMPARE = {
+  title: "Why OwnerAway Is Different",
+  sub: "We are designed around business continuity, not just filling a shift.",
+  head: ["Need", "Traditional Temporary Help", "OwnerAway"],
+  rows: [
+    ["Run daily operations", "Limited", "Planned operational coverage"],
+    ["Understand owner concerns", "Usually no", "Built for owner-dependent businesses"],
+    ["Daily reporting", "Not standard", "Included in coverage plan"],
+    ["Confidentiality and scope", "Varies", "Defined before engagement"],
+  ],
+};
+
+export const FAQ = [
+  { q: "Is OwnerAway a staffing agency?", a: "No. OwnerAway is focused on temporary operational coverage, business continuity, reporting, and owner absence support." },
+  { q: "How much does coverage cost?", a: "Pricing depends on business type, coverage length, location, complexity, and responsibilities. Pilot pricing is reviewed after discovery." },
+  { q: "Will I still have control?", a: "Yes. You define the scope, access, limits, and escalation rules before coverage begins." },
+  { q: "Do you sign an NDA?", a: "Yes. Confidentiality is a core part of the process because business owners share sensitive operational information." },
+  { q: "What if there is an emergency?", a: "Each coverage plan includes emergency escalation procedures and owner approval rules for major decisions." },
+];
+
+export const APPLY = {
+  badge: "Pilot Program",
+  title: "Ready to Take a Real Break?",
+  body: "Apply for our limited pilot program. Pricing depends on business type, coverage length, and operational complexity.",
+  points: [
+    "Best fit for owner-dependent businesses",
+    "Ideal for meaningful weekly revenue operations",
+    "Discovery call required before coverage",
+  ],
+};
+
+export const BUSINESS_TYPES = [
+  "Entertainment Venue", "Escape Room", "Axe Throwing",
+  "Family Entertainment Center", "Other",
+];
+
+export const REVENUE_RANGES = [
+  "Under $10K/week", "$10K–$20K/week", "$20K–$30K/week", "$30K+/week",
+];
+
+export const SOCIALS = {
+  linkedin: "https://www.linkedin.com/company/owneraway-usa/about/",
+  instagram: "https://www.instagram.com/ownerawayusa",
+  facebook: "https://www.facebook.com/ownerawayusa",
+};
 
 export const INQUIRY_EMAIL = "ownerawaystartup@gmail.com";
-export const WEB3FORMS_ACCESS_KEY = "bab9a0b5-5b80-449a-91ab-6ba42718bed8"; 
+export const WEB3FORMS_ACCESS_KEY = "bab9a0b5-5b80-449a-91ab-6ba42718bed8";
