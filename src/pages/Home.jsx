@@ -2,7 +2,7 @@ import Reveal from "../components/Reveal";
 import ApplyForm from "../components/ApplyForm";
 import {
   HERO, PROBLEM, SOLUTION, STEPS, STATS, SERVICES, INDUSTRIES,
-  CONCERNS, TRUST, FOUNDER, COMPARE, FAQ, APPLY,
+  CONCERNS, TRUST, FOUNDER, TEAM, COMPARE, FAQ, APPLY,
 } from "../data";
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
@@ -190,6 +190,26 @@ export default function Home() {
               {FOUNDER.points.map((p) => <li key={p}>{p}</li>)}
             </ul>
           </Reveal>
+        </div>
+      </section>
+
+      {/* ---------------- Team ---------------- */}
+      <section id="team" className="oa-section oa-soft" aria-labelledby="team-h">
+        <div className="oa-container">
+          <Reveal className="oa-center-block">
+            <h2 id="team-h" className="oa-h2">{TEAM.title}</h2>
+            <p className="oa-lead">{TEAM.sub}</p>
+          </Reveal>
+          <div className="oa-grid4 oa-team-grid">
+            {TEAM.members.map((m, i) => (
+              <Reveal as="article" className="oa-team-card" key={`${m.name}-${i}`} delay={(i % 4) * 90}>
+                <div className="oa-avatar" aria-hidden="true">{m.initials}</div>
+                <h3>{m.name}</h3>
+                <p className="oa-role">{m.role}</p>
+                <p className="oa-bio">{m.bio}</p>
+              </Reveal>
+            ))}
+          </div>
         </div>
       </section>
 

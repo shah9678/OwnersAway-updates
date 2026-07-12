@@ -2,6 +2,7 @@ export const NAV = [
   { label: "How It Works", to: "#how" },
   { label: "Services", to: "#services" },
   { label: "Industries", to: "#industries" },
+  { label: "Team", to: "#team" },
   { label: "Trust", to: "#trust" },
   { label: "FAQ", to: "#faq" },
 ];
@@ -83,6 +84,37 @@ export const FOUNDER = {
     "Created for owner-dependent businesses",
     "Focused on operational coverage, not generic staffing",
     "Starting with entertainment and experience-based businesses",
+  ],
+};
+
+export const TEAM = {
+  title: "Meet the Team",
+  sub: "A small, hands-on team focused on one thing: keeping your business steady while you step away.",
+  members: [
+    {
+      initials: "SS",
+      name: "Shivam Shah",
+      role: "Founder & CEO",
+      bio: "Business owner turned operator. Leads coverage planning and every pilot engagement personally.",
+    },
+    {
+      initials: "AS",
+      name: "Adit Shah",
+      role: "Technology Lead",
+      bio: "Builds the systems behind daily reporting, coverage playbooks, and owner communication.",
+    },
+    {
+      initials: "TM",
+      name: "Your Name Here",
+      role: "Operations Lead",
+      bio: "Placeholder bio. A short two-line summary of experience and what they own at OwnerAway.",
+    },
+    {
+      initials: "TM",
+      name: "Your Name Here",
+      role: "Coverage Operator",
+      bio: "Placeholder bio. A short two-line summary of experience and what they own at OwnerAway.",
+    },
   ],
 };
 
