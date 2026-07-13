@@ -5,7 +5,7 @@ import {
   CONCERNS, TRUST, FOUNDER, TEAM, COMPARE, FAQ, APPLY,
 } from "../data";
 import { useState } from "react";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, Play } from "lucide-react";
 
 function FaqItem({ item, index, open, onToggle }) {
   const btnId = `faq-q-${index}`;
@@ -45,7 +45,7 @@ export default function Home() {
           <p className="oa-hero-lede oa-fade" style={{ animationDelay: ".16s" }}>{HERO.lede}</p>
           <div className="oa-hero-cta oa-fade" style={{ animationDelay: ".24s" }}>
             <a href="#apply" className="oa-btn oa-btn-gold">Request Pilot Coverage</a>
-            <a href="#how" className="oa-btn oa-btn-ghost">See How It Works</a>
+            <a href="#how" className="oa-btn oa-btn-ghost"><Play size={16} aria-hidden="true" /> How It Works</a>
           </div>
           <ul className="oa-hero-features oa-fade" style={{ animationDelay: ".32s" }}>
             {HERO.trust.map((t) => (
