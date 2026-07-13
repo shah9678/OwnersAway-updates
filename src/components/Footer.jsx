@@ -1,13 +1,12 @@
 import Logo from "./Logo";
 import { FacebookIcon, InstagramIcon, LinkedinIcon } from "./SocialIcons";
 import { NAV, SOCIALS } from "../data";
+import scrollToHash from "../lib/scrollTo";
 
 export default function Footer() {
   const go = (e, hash) => {
     e.preventDefault();
-    const el = document.querySelector(hash);
-    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
-    history.replaceState(null, "", hash);
+    scrollToHash(hash);
   };
 
   return (

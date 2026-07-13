@@ -3,16 +3,17 @@ import { Menu, X } from "lucide-react";
 import Logo from "./Logo";
 import ThemeToggle from "./ThemeToggle";
 import { NAV, TOPBAR } from "../data";
+import scrollToHash from "../lib/scrollTo";
 
 export default function Header() {
   const [open, setOpen] = useState(false);
 
+  // Close the menu first, wait for the collapsed layout to be measured,
+  // then scroll using absolute coordinates (see lib/scrollTo.js).
   const go = (e, hash) => {
     e.preventDefault();
     setOpen(false);
-    const el = document.querySelector(hash);
-    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
-    history.replaceState(null, "", hash);
+    setTimeout(() => scrollToHash(hash), 60);
   };
 
   return (
