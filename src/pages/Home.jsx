@@ -32,11 +32,8 @@ export default function Home() {
     <>
       {/* ---------------- Hero ---------------- */}
       <section className="oa-hero" aria-labelledby="hero-h">
-        <div className="oa-hero-bg" aria-hidden="true">
-          <div className="oa-glow oa-glow-amber" />
-          <div className="oa-glow oa-glow-cyan" />
-          <div className="oa-hero-grid" />
-        </div>
+        <div className="oa-hero-photo" aria-hidden="true" />
+        <div className="oa-hero-shade" aria-hidden="true" />
         <div className="oa-container oa-hero-inner">
           <p className="oa-eyebrow oa-fade">{HERO.badge}</p>
           <h1 id="hero-h" className="oa-fade" style={{ animationDelay: ".08s" }}>
