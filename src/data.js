@@ -100,7 +100,7 @@ export const TEAM = {
     {
       initials: "AS",
       name: "Adit Shah",
-      role: "Co-Founder & Technology",
+      role: "Technology Lead",
       bio: "Builds the systems behind daily reporting, coverage playbooks, and owner communication.",
     },
     {
