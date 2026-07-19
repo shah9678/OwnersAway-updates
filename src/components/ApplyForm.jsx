@@ -144,6 +144,11 @@ export default function ApplyForm() {
         {field("concern", "What is your biggest concern when stepping away from your business?", "textarea", { full: true })}
       </div>
       {formError && <p className="oa-form-error" role="alert">{formError}</p>}
+      <p className="oa-consent">
+        By submitting this form, you agree to our{" "}
+        <a href="/terms" target="_blank" rel="noopener noreferrer">Terms of Service</a> and{" "}
+        <a href="/privacy" target="_blank" rel="noopener noreferrer">Privacy Policy</a>.
+      </p>
       <button type="button" className="oa-btn oa-btn-gold oa-btn-block" onClick={submit} disabled={sending}>
         {sending
           ? (<><Loader2 size={18} aria-hidden="true" style={{ animation: "spin 1s linear infinite" }} /> Sending…</>)

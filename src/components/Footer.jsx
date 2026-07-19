@@ -44,6 +44,11 @@ export default function Footer() {
         </div>
         <div className="oa-footer-bottom">
           <p className="oa-copy">© {new Date().getFullYear()} OwnerAway. All rights reserved.</p>
+          <nav className="oa-legal-links" aria-label="Legal">
+            <a href="/privacy">Privacy Policy</a>
+            <span aria-hidden="true">·</span>
+            <a href="/terms">Terms of Service</a>
+          </nav>
         </div>
       </div>
     </footer>
