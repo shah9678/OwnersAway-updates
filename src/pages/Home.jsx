@@ -1,5 +1,6 @@
 import Reveal from "../components/Reveal";
 import ApplyForm from "../components/ApplyForm";
+import shivamShah from "../assets/shivam-shah.jpeg";
 import {
   HERO, PROBLEM, SOLUTION, STEPS, STATS, SERVICES, INDUSTRIES,
   CONCERNS, TRUST, FOUNDER, TEAM, COMPARE, FAQ, APPLY,
@@ -178,7 +179,9 @@ export default function Home() {
       {/* ---------------- Founder ---------------- */}
       <section className="oa-section" aria-labelledby="fs-h">
         <div className="oa-container oa-founder">
-          <Reveal className="oa-photo" aria-hidden="true">SS</Reveal>
+          <Reveal className="oa-photo">
+            <img src={shivamShah} alt="Shivam Shah" />
+          </Reveal>
           <Reveal delay={100}>
             <p className="oa-eyebrow">{FOUNDER.badge}</p>
             <h2 id="fs-h" className="oa-h2">{FOUNDER.title}</h2>
