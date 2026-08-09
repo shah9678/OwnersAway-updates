@@ -15,6 +15,30 @@
       document.documentElement.setAttribute("data-theme", stored === "light" ? "light" : "dark");
     })();
   </script>
+    <script>
+  (function () {
+    const baseUrl = "https://ownerawayusa.com";
+
+    let path = window.location.pathname;
+
+    if (path.length > 1 && path.endsWith("/")) {
+      path = path.slice(0, -1);
+    }
+
+    const canonicalUrl =
+      path === "/" ? baseUrl + "/" : baseUrl + path;
+
+    const canonical = document.getElementById("canonical-link");
+    if (canonical) {
+      canonical.setAttribute("href", canonicalUrl);
+    }
+
+    const ogUrl = document.getElementById("og-url");
+    if (ogUrl) {
+      ogUrl.setAttribute("content", canonicalUrl);
+    }
+  })();
+</script>
 
   <title>
     OwnerAway USA | Temporary Business Operational Coverage
@@ -31,9 +55,10 @@
   />
 
   <link
-    rel="canonical"
-    href="https://ownerawayusa.com/"
-  />
+  rel="canonical"
+  id="canonical-link"
+  href="https://ownerawayusa.com/"
+/>
 
   <link
     rel="icon"
@@ -63,9 +88,10 @@
   />
 
   <meta
-    property="og:url"
-    content="https://ownerawayusa.com/"
-  />
+  property="og:url"
+  id="og-url"
+  content="https://ownerawayusa.com/"
+/>
 
   <meta
     property="og:image"
