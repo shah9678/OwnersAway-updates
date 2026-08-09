@@ -3,9 +3,16 @@ import useDocumentHead from "../lib/useDocumentHead";
 
 export default function Privacy() {
   useDocumentHead({
-    title: "Privacy Policy | OwnerAway",
-    description: "How OwnerAway collects, uses, and protects information submitted through pilot applications and contact forms at ownerawayusa.com.",
-    canonical: "https://ownerawayusa.com/privacy",
+    title: "Privacy Policy | OwnerAway USA",
+    description:
+  "Read the OwnerAway Privacy Policy to learn how information submitted through our website and services is collected, used, and protected.",
+
+canonical: "https://ownerawayusa.com/privacy",
+
+ogTitle: "Privacy Policy | OwnerAway USA",
+
+ogDescription:
+  "Read the OwnerAway Privacy Policy to learn how information submitted through our website and services is collected, used, and protected.",
   });
 
   return (
