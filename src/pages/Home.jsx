@@ -34,10 +34,17 @@ export default function Home() {
   // All nav routes (/, /how, /services, ...) render this same page at a
   // different scroll position, so they all canonicalize to the homepage
   // to avoid duplicate-content signals while still being crawlable.
+  const currentPath =
+    window.location.pathname.replace(/\/+$/, "") || "/";
+
+const canonicalUrl =
+    currentPath === "/"
+        ? "https://ownerawayusa.com/"
+        : `https://ownerawayusa.com${currentPath}`;
   useDocumentHead({
     title: "OwnerAway USA | Temporary Business Operational Coverage",
     description: "OwnerAway provides temporary operational coverage and qualified relief managers who keep owner-dependent businesses running during vacations, medical leave, emergencies, and extended absences.",
-    canonical: "https://ownerawayusa.com/",
+    canonical: canonicalUrl,
   });
 
   return (
