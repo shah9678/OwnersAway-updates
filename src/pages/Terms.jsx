@@ -3,9 +3,17 @@ import useDocumentHead from "../lib/useDocumentHead";
 
 export default function Terms() {
   useDocumentHead({
-    title: "Terms of Service | OwnerAway",
-    description: "The terms that govern use of ownerawayusa.com and OwnerAway's temporary operational coverage pilot program.",
-    canonical: "https://ownerawayusa.com/terms",
+    title: "Terms of Service | OwnerAway USA",
+
+description:
+  "Review the OwnerAway Terms of Service covering website use, services, responsibilities, limitations, and other applicable terms.",
+
+canonical: "https://ownerawayusa.com/terms",
+
+ogTitle: "Terms of Service | OwnerAway USA",
+
+ogDescription:
+  "Review the OwnerAway Terms of Service covering website use, services, responsibilities, limitations, and other applicable terms.",
   });
 
   return (
