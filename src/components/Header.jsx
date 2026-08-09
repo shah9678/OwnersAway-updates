@@ -3,17 +3,17 @@ import { Menu, X } from "lucide-react";
 import Logo from "./Logo";
 import ThemeToggle from "./ThemeToggle";
 import { NAV, TOPBAR } from "../data";
-import scrollToHash from "../lib/scrollTo";
+import scrollToPath from "../lib/scrollTo";
 
 export default function Header() {
   const [open, setOpen] = useState(false);
 
   // Close the menu first, wait for the collapsed layout to be measured,
   // then scroll using absolute coordinates (see lib/scrollTo.js).
-  const go = (e, hash) => {
+  const go = (e, path) => {
     e.preventDefault();
     setOpen(false);
-    setTimeout(() => scrollToHash(hash), 60);
+    setTimeout(() => scrollToPath(path), 60);
   };
 
   return (
@@ -29,7 +29,7 @@ export default function Header() {
           </nav>
           <div className="oa-header-right">
             <ThemeToggle />
-            <a href="#apply" className="oa-btn oa-btn-navy oa-header-cta" onClick={(e) => go(e, "#apply")}>
+            <a href="/apply" className="oa-btn oa-btn-navy oa-header-cta" onClick={(e) => go(e, "/apply")}>
               Request Coverage
             </a>
             <button
@@ -48,7 +48,7 @@ export default function Header() {
             {NAV.map((n) => (
               <a key={n.to} href={n.to} onClick={(e) => go(e, n.to)}>{n.label}</a>
             ))}
-            <a href="#apply" className="oa-btn oa-btn-gold" onClick={(e) => go(e, "#apply")}>
+            <a href="/apply" className="oa-btn oa-btn-gold" onClick={(e) => go(e, "/apply")}>
               Request Coverage
             </a>
           </nav>

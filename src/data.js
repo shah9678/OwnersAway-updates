@@ -1,10 +1,10 @@
 export const NAV = [
-  { label: "How It Works", to: "#how" },
-  { label: "Services", to: "#services" },
-  { label: "Industries", to: "#industries" },
-  { label: "Team", to: "#team" },
-  { label: "Trust", to: "#trust" },
-  { label: "FAQ", to: "#faq" },
+  { label: "How It Works", to: "/how" },
+  { label: "Services", to: "/services" },
+  { label: "Industries", to: "/industries" },
+  { label: "Team", to: "/team" },
+  { label: "Trust", to: "/trust" },
+  { label: "FAQ", to: "/faq" },
 ];
 
 export const TOPBAR = "🚀 Now accepting limited pilot conversations with qualified owner-operated businesses.";

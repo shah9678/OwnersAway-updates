@@ -1,5 +1,6 @@
 import Reveal from "../components/Reveal";
 import ApplyForm from "../components/ApplyForm";
+import scrollToPath from "../lib/scrollTo";
 import shivamShah from "../assets/shivam-shah.jpeg";
 import {
   HERO, PROBLEM, SOLUTION, STEPS, STATS, SERVICES, INDUSTRIES,
@@ -42,8 +43,8 @@ export default function Home() {
           </h1>
           <p className="oa-hero-lede oa-fade" style={{ animationDelay: ".16s" }}>{HERO.lede}</p>
           <div className="oa-hero-cta oa-fade" style={{ animationDelay: ".24s" }}>
-            <a href="#apply" className="oa-btn oa-btn-gold">Request Pilot Coverage</a>
-            <a href="#how" className="oa-btn oa-btn-ghost"><Play size={16} aria-hidden="true" /> How It Works</a>
+            <a href="/apply" className="oa-btn oa-btn-gold" onClick={(e) => { e.preventDefault(); scrollToPath("/apply"); }}>Request Pilot Coverage</a>
+            <a href="/how" className="oa-btn oa-btn-ghost" onClick={(e) => { e.preventDefault(); scrollToPath("/how"); }}><Play size={16} aria-hidden="true" /> How It Works</a>
           </div>
           <ul className="oa-hero-features oa-fade" style={{ animationDelay: ".32s" }}>
             {HERO.trust.map((t) => (

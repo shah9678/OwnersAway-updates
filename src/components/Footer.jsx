@@ -1,12 +1,12 @@
 import Logo from "./Logo";
 import { FacebookIcon, InstagramIcon, LinkedinIcon } from "./SocialIcons";
 import { NAV, SOCIALS } from "../data";
-import scrollToHash from "../lib/scrollTo";
+import scrollToPath from "../lib/scrollTo";
 
 export default function Footer() {
-  const go = (e, hash) => {
+  const go = (e, path) => {
     e.preventDefault();
-    scrollToHash(hash);
+    scrollToPath(path);
   };
 
   return (
@@ -25,7 +25,7 @@ export default function Footer() {
                   <a href={n.to} onClick={(e) => go(e, n.to)}>{n.label}</a>
                 </li>
               ))}
-              <li><a href="#apply" onClick={(e) => go(e, "#apply")}>Request Coverage</a></li>
+              <li><a href="/apply" onClick={(e) => go(e, "/apply")}>Request Coverage</a></li>
             </ul>
           </div>
           <div>
