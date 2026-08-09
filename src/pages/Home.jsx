@@ -41,11 +41,64 @@ const canonicalUrl =
     currentPath === "/"
         ? "https://ownerawayusa.com/"
         : `https://ownerawayusa.com${currentPath}`;
+  const pageSEO = {
+  "/": {
+    title: "OwnerAway USA | Temporary Operational Coverage",
+    description:
+      "OwnerAway provides temporary operational coverage and qualified relief managers for owner-dependent businesses during vacations, medical leave, emergencies, and extended absences.",
+  },
+
+  "/how": {
+    title: "How OwnerAway Works | Temporary Business Coverage",
+    description:
+      "Learn how OwnerAway helps owner-dependent businesses prepare for temporary operational coverage and stay running while the owner is away.",
+  },
+
+  "/services": {
+    title: "Business Coverage Services | OwnerAway USA",
+    description:
+      "Explore OwnerAway temporary operational coverage services designed to help owner-dependent businesses continue operating while owners step away.",
+  },
+
+  "/industries": {
+    title: "Industries We Serve | OwnerAway USA",
+    description:
+      "Discover the types of owner-dependent businesses OwnerAway supports with temporary operational coverage and qualified relief management.",
+  },
+
+  "/team": {
+    title: "Meet the OwnerAway Team | Operational Coverage",
+    description:
+      "Meet the people behind OwnerAway and learn about the experience and vision driving temporary operational coverage for business owners.",
+  },
+
+  "/trust": {
+    title: "Why Trust OwnerAway | Relief Manager Coverage",
+    description:
+      "Learn how OwnerAway approaches relief manager selection, reliability, communication, and operational safeguards when business owners are away.",
+  },
+
+  "/faq": {
+    title: "OwnerAway FAQ | Temporary Business Coverage",
+    description:
+      "Get answers about OwnerAway, temporary operational coverage, relief managers, scheduling, industries served, and how to request coverage.",
+  },
+
+  "/apply": {
+    title: "Request Business Coverage | OwnerAway USA",
+    description:
+      "Request temporary operational coverage from OwnerAway. Tell us about your business, location, coverage dates, and operational needs to get started.",
+  },
+};
+
+const seo = pageSEO[currentPath] || pageSEO["/"];
   useDocumentHead({
-    title: "OwnerAway USA | Temporary Business Operational Coverage",
-    description: "OwnerAway provides temporary operational coverage and qualified relief managers who keep owner-dependent businesses running during vacations, medical leave, emergencies, and extended absences.",
-    canonical: canonicalUrl,
-  });
+  title: seo.title,
+  description: seo.description,
+  canonical: canonicalUrl,
+  ogTitle: seo.title,
+  ogDescription: seo.description,
+});
 
   return (
     <>
