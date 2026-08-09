@@ -8,6 +8,14 @@
     content="width=device-width, initial-scale=1.0"
   />
 
+  <script>
+    (function () {
+      var stored = null;
+      try { stored = localStorage.getItem("oa-theme"); } catch (e) {}
+      document.documentElement.setAttribute("data-theme", stored === "light" ? "light" : "dark");
+    })();
+  </script>
+
   <title>
     OwnerAway USA | Temporary Business Operational Coverage
   </title>

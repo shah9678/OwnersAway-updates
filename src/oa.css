@@ -183,7 +183,8 @@ a{color:inherit;text-decoration:none;}
 /* Founder */
 .oa-founder{display:grid;grid-template-columns:320px 1fr;gap:36px;align-items:center;}
 .oa-photo{height:320px;border-radius:24px;background:linear-gradient(135deg,#dcecff,#f8fbff);
-  display:grid;place-items:center;color:#0a2342;font-size:4.2rem;font-weight:900;font-family:'Archivo',sans-serif;border:1px solid var(--border);}
+  display:grid;place-items:center;color:#0a2342;font-size:4.2rem;font-weight:900;font-family:'Archivo',sans-serif;
+  border:1px solid var(--border);box-shadow:0 16px 40px rgba(6,27,63,.16);position:relative;overflow:hidden;}
 [data-theme="dark"] .oa-photo{background:linear-gradient(135deg,#16305a,#0d1d38);color:var(--gold);}
 .oa-founder .oa-lead{margin-left:0;margin-right:0;}
 ul.oa-clean{padding:0;margin:0;list-style:none;}
@@ -258,6 +259,7 @@ ul.oa-clean{padding:0;margin:0;list-style:none;}
   .oa-split,.oa-grid3,.oa-formwrap,.oa-founder,.oa-footer-top{grid-template-columns:1fr;}
   .oa-grid4,.oa-steps,.oa-stats-grid{grid-template-columns:1fr 1fr;}
   .oa-photo{height:240px;}
+  .oa-founder{gap:44px 36px;}
   .oa-hero-photo{background-position:72% center;}
   .oa-hero-shade{background:linear-gradient(90deg,rgba(9,24,48,.95) 0%,rgba(9,24,48,.86) 55%,rgba(9,24,48,.62) 100%);}
 }
@@ -267,6 +269,20 @@ ul.oa-clean{padding:0;margin:0;list-style:none;}
   .oa-form-grid{grid-template-columns:1fr;}
   .oa-full{grid-column:span 1;}
   .oa-logo-img{height:46px;}
+
+  /* Comparison table: 3 columns don't fit narrow phones without hiding
+     content off-screen, so stack each row into a labeled card instead. */
+  .oa-compare{overflow:visible;}
+  .oa-compare table{border:none;background:none;}
+  .oa-compare thead{display:none;}
+  .oa-compare tr{display:block;margin-bottom:14px;background:var(--surface);
+    border:1px solid var(--border);border-radius:14px;overflow:hidden;}
+  .oa-compare td{display:flex;justify-content:space-between;align-items:center;
+    gap:12px;padding:12px 16px;border-bottom:1px solid var(--border);text-align:right;}
+  .oa-compare tr td:last-child{border-bottom:none;}
+  .oa-compare td::before{content:attr(data-label);font-family:'Archivo',sans-serif;
+    font-weight:700;font-size:.78rem;text-transform:uppercase;letter-spacing:.04em;
+    color:var(--text);text-align:left;}
 }
 
 /* Team */
@@ -285,6 +301,8 @@ ul.oa-clean{padding:0;margin:0;list-style:none;}
 /* Anchor targets land below the sticky header instead of underneath it */
 section[id]{scroll-margin-top:96px;}
 .oa-photo img {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;

@@ -1,6 +1,13 @@
 import { INQUIRY_EMAIL } from "../data";
+import useDocumentHead from "../lib/useDocumentHead";
 
 export default function Privacy() {
+  useDocumentHead({
+    title: "Privacy Policy | OwnerAway",
+    description: "How OwnerAway collects, uses, and protects information submitted through pilot applications and contact forms at ownerawayusa.com.",
+    canonical: "https://ownerawayusa.com/privacy",
+  });
+
   return (
     <div className="oa-legal">
       <div className="oa-container">

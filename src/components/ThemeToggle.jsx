@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import { Sun, Moon } from "lucide-react";
 
+// Defaults to dark; an inline script in index.html sets this on <html>
+// before first paint (respecting any saved choice) so there's no flash.
 function getInitial() {
-  if (typeof document === "undefined") return "light";
-  return document.documentElement.getAttribute("data-theme") || "light";
+  if (typeof document === "undefined") return "dark";
+  return document.documentElement.getAttribute("data-theme") || "dark";
 }
 
 export default function ThemeToggle() {

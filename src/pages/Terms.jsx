@@ -1,6 +1,13 @@
 import { INQUIRY_EMAIL } from "../data";
+import useDocumentHead from "../lib/useDocumentHead";
 
 export default function Terms() {
+  useDocumentHead({
+    title: "Terms of Service | OwnerAway",
+    description: "The terms that govern use of ownerawayusa.com and OwnerAway's temporary operational coverage pilot program.",
+    canonical: "https://ownerawayusa.com/terms",
+  });
+
   return (
     <div className="oa-legal">
       <div className="oa-container">

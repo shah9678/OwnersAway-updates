@@ -1,6 +1,7 @@
 import Reveal from "../components/Reveal";
 import ApplyForm from "../components/ApplyForm";
 import scrollToPath from "../lib/scrollTo";
+import useDocumentHead from "../lib/useDocumentHead";
 import shivamShah from "../assets/shivam-shah.jpeg";
 import {
   HERO, PROBLEM, SOLUTION, STEPS, STATS, SERVICES, INDUSTRIES,
@@ -29,6 +30,15 @@ function FaqItem({ item, index, open, onToggle }) {
 
 export default function Home() {
   const [openFaq, setOpenFaq] = useState(0);
+
+  // All nav routes (/, /how, /services, ...) render this same page at a
+  // different scroll position, so they all canonicalize to the homepage
+  // to avoid duplicate-content signals while still being crawlable.
+  useDocumentHead({
+    title: "OwnerAway USA | Temporary Business Operational Coverage",
+    description: "OwnerAway provides temporary operational coverage and qualified relief managers who keep owner-dependent businesses running during vacations, medical leave, emergencies, and extended absences.",
+    canonical: "https://ownerawayusa.com/",
+  });
 
   return (
     <>
@@ -181,7 +191,7 @@ export default function Home() {
       <section className="oa-section" aria-labelledby="fs-h">
         <div className="oa-container oa-founder">
           <Reveal className="oa-photo">
-            <img src={shivamShah} alt="Shivam Shah" />
+            <img src={shivamShah} alt="Shivam Shah, Founder and CEO of OwnerAway" />
           </Reveal>
           <Reveal delay={100}>
             <p className="oa-eyebrow">{FOUNDER.badge}</p>
@@ -229,7 +239,9 @@ export default function Home() {
               <tbody>
                 {COMPARE.rows.map((r) => (
                   <tr key={r[0]}>
-                    <td>{r[0]}</td><td>{r[1]}</td><td>{r[2]}</td>
+                    <td data-label={COMPARE.head[0]}>{r[0]}</td>
+                    <td data-label={COMPARE.head[1]}>{r[1]}</td>
+                    <td data-label={COMPARE.head[2]}>{r[2]}</td>
                   </tr>
                 ))}
               </tbody>
@@ -240,6 +252,20 @@ export default function Home() {
 
       {/* ---------------- FAQ ---------------- */}
       <section id="faq" className="oa-section" aria-labelledby="faq-h">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "FAQPage",
+              mainEntity: FAQ.map((item) => ({
+                "@type": "Question",
+                name: item.q,
+                acceptedAnswer: { "@type": "Answer", text: item.a },
+              })),
+            }),
+          }}
+        />
         <div className="oa-container">
           <Reveal className="oa-center-block">
             <h2 id="faq-h" className="oa-h2">FAQ</h2>

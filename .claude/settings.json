@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cp \"/private/tmp/claude-501/-Users-aditshah-Downloads-owneraway-site-2/faeae6ab-50a9-417d-90a2-b2a4049dac2c/scratchpad/check.mjs\" \"/Users/aditshah/Downloads/owneraway-site 2/check.mjs\")",
+      "Bash(node check.mjs \"/private/tmp/claude-501/-Users-aditshah-Downloads-owneraway-site-2/faeae6ab-50a9-417d-90a2-b2a4049dac2c/scratchpad/shots\")",
+      "Bash(node check.mjs)",
+      "Bash(node check_scoped.mjs)",
+      "Bash(node check_img.mjs)"
+    ]
+  }
+}
