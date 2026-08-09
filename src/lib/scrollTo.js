@@ -15,5 +15,4 @@ export default function scrollToHash(hash) {
   } catch {
     window.scrollTo(0, y);
   }
-  history.replaceState(null, "", hash);
 }
