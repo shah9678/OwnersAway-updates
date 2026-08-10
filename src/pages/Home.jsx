@@ -274,7 +274,9 @@ const seo = pageSEO[currentPath] || pageSEO["/"];
           <div className="oa-grid4 oa-team-grid">
             {TEAM.members.map((m, i) => (
               <Reveal as="article" className="oa-team-card" key={`${m.name}-${i}`} delay={(i % 4) * 90}>
-                <div className="oa-avatar" aria-hidden="true">{m.initials}</div>
+                {m.photo
+                  ? <img className="oa-avatar-img" src={m.photo} alt={m.name} />
+                  : <div className="oa-avatar" aria-hidden="true">{m.initials}</div>}
                 <h3>{m.name}</h3>
                 <p className="oa-role">{m.role}</p>
                 <p className="oa-bio">{m.bio}</p>

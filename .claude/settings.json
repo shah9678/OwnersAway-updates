@@ -5,7 +5,14 @@
       "Bash(node check.mjs \"/private/tmp/claude-501/-Users-aditshah-Downloads-owneraway-site-2/faeae6ab-50a9-417d-90a2-b2a4049dac2c/scratchpad/shots\")",
       "Bash(node check.mjs)",
       "Bash(node check_scoped.mjs)",
-      "Bash(node check_img.mjs)"
+      "Bash(node check_img.mjs)",
+      "Bash(sips -g pixelWidth -g pixelHeight src/assets/team_adit.png src/assets/team_shivam.PNG)",
+      "Bash(git mv *)",
+      "Bash(mv src/assets/team_shivam.PNG src/assets/team_shivam.png)",
+      "Bash(sips -g hasAlpha src/assets/team_adit.png)",
+      "Bash(python3 -c ' *)",
+      "Bash(sips -Z 500 -s format jpeg -s formatOptions 85 src/assets/team_shivam.png --out /tmp/team_shivam.jpg)",
+      "Bash(sips -Z 500 -s format jpeg -s formatOptions 85 src/assets/team_adit.png --out /tmp/team_adit.jpg)"
     ]
   }
 }

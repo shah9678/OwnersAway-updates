@@ -1,3 +1,6 @@
+import teamShivam from "./assets/team_shivam.jpg";
+import teamAdit from "./assets/team_adit.jpg";
+
 export const NAV = [
   { label: "How It Works", to: "/how" },
   { label: "Services", to: "/services" },
@@ -93,12 +96,14 @@ export const TEAM = {
   members: [
     {
       initials: "SS",
+      photo: teamShivam,
       name: "Shivam Shah",
       role: "Founder & CEO",
       bio: "Business owner turned operator. Leads coverage planning and every pilot engagement personally.",
     },
     {
       initials: "AS",
+      photo: teamAdit,
       name: "Adit Shah",
       role: "Technology Lead",
       bio: "Builds the systems behind daily reporting, coverage playbooks, and owner communication.",
