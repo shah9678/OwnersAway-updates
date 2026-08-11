@@ -4,9 +4,10 @@ import { BUSINESS_TYPES, REVENUE_RANGES, INQUIRY_EMAIL, WEB3FORMS_ACCESS_KEY } f
 
 export default function ApplyForm() {
   const empty = {
-    fullName: "", businessName: "", businessType: "", location: "",
-    email: "", phone: "", revenue: "", concern: "",
-  };
+  fullName: "", businessName: "", businessType: "", location: "",
+  email: "", phone: "", revenue: "", concern: "",
+  termsAccepted: false,
+};
   const [values, setValues] = useState(empty);
   const [errors, setErrors] = useState({});
   const [formError, setFormError] = useState("");
@@ -20,15 +21,37 @@ export default function ApplyForm() {
   };
 
   const validate = () => {
-    const e = {};
-    if (!values.fullName.trim()) e.fullName = "Please enter your name.";
-    if (!values.businessName.trim()) e.businessName = "Please enter your business name.";
-    if (!values.businessType) e.businessType = "Please select a business type.";
-    if (!values.email.trim()) e.email = "Please enter your email.";
-    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.email)) e.email = "Enter a valid email address.";
-    if (values.phone && !/^[\d\s()+.-]{7,}$/.test(values.phone)) e.phone = "Enter a valid phone number.";
-    return e;
-  };
+  const e = {};
+
+  if (!values.fullName.trim()) {
+    e.fullName = "Please enter your name.";
+  }
+
+  if (!values.businessName.trim()) {
+    e.businessName = "Please enter your business name.";
+  }
+
+  if (!values.businessType) {
+    e.businessType = "Please select a business type.";
+  }
+
+  if (!values.email.trim()) {
+    e.email = "Please enter your email.";
+  } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.email)) {
+    e.email = "Enter a valid email address.";
+  }
+
+  if (values.phone && !/^[\d\s()+.-]{7,}$/.test(values.phone)) {
+    e.phone = "Enter a valid phone number.";
+  }
+
+  if (!values.termsAccepted) {
+    e.termsAccepted =
+      "You must agree to the Terms of Service and acknowledge the Privacy Policy.";
+  }
+
+  return e;
+};
 
   const mailtoFallback = () => {
     const lines = [
@@ -58,11 +81,15 @@ export default function ApplyForm() {
           method: "POST",
           headers: { "Content-Type": "application/json", Accept: "application/json" },
           body: JSON.stringify({
-            access_key: WEB3FORMS_ACCESS_KEY,
-            subject: `Pilot coverage request — ${values.businessName}`,
-            from_name: "OwnerAway Website",
-            ...values,
-          }),
+  access_key: WEB3FORMS_ACCESS_KEY,
+  subject: `Pilot coverage request — ${values.businessName}`,
+  from_name: "OwnerAway Website",
+  ...values,
+  termsAccepted: values.termsAccepted ? "Yes" : "No",
+  termsVersion: "2026-08-10",
+  privacyVersion: "2026-08-10",
+  acceptedAt: new Date().toISOString(),
+}),
         });
         const data = await res.json();
         if (!data.success) throw new Error(data.message || "Submission failed");
@@ -144,11 +171,29 @@ export default function ApplyForm() {
         {field("concern", "What is your biggest concern when stepping away from your business?", "textarea", { full: true })}
       </div>
       {formError && <p className="oa-form-error" role="alert">{formError}</p>}
-      <p className="oa-consent">
-        By submitting this form, you agree to our{" "}
-        <a href="/terms" target="_blank" rel="noopener noreferrer">Terms of Service</a> and{" "}
-        <a href="/privacy" target="_blank" rel="noopener noreferrer">Privacy Policy</a>.
-      </p>
+      <div className="oa-consent">
+  <label>
+    <input
+      type="checkbox"
+      checked={values.termsAccepted}
+      onChange={(ev) => update("termsAccepted", ev.target.checked)}
+    />{" "}
+    I agree to the{" "}
+    <a href="/terms" target="_blank" rel="noopener noreferrer">
+      Terms of Service
+    </a>{" "}
+    and acknowledge the{" "}
+    <a href="/privacy" target="_blank" rel="noopener noreferrer">
+      Privacy Policy
+    </a>.
+  </label>
+
+  {errors.termsAccepted && (
+    <span className="oa-err" role="alert">
+      <AlertCircle size={13} aria-hidden="true" /> {errors.termsAccepted}
+    </span>
+  )}
+</div>
       <button type="button" className="oa-btn oa-btn-gold oa-btn-block" onClick={submit} disabled={sending}>
         {sending
           ? (<><Loader2 size={18} aria-hidden="true" style={{ animation: "spin 1s linear infinite" }} /> Sending…</>)
