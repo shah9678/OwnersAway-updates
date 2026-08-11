@@ -5,6 +5,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Public+Sans:wght@400;500;600;700&display=swap');
 
 :root{
+  color-scheme:light;
   --gold:#cfa15a; --gold-2:#dbb374;
   --red:#d8453a; --green:#1f9d55;
   --navy:#0a2342;
@@ -25,6 +26,7 @@
 }
 
 [data-theme="dark"]{
+  color-scheme:dark;
   --bg:#0a1220;
   --surface:#14233a;
   --surface-soft:#101d31;
@@ -229,7 +231,7 @@ ul.oa-clean{padding:0;margin:0;list-style:none;}
 .oa-field textarea{min-height:110px;resize:vertical;}
 .oa-field input:focus,.oa-field select:focus,.oa-field textarea:focus{border-color:var(--gold);outline:none;box-shadow:0 0 0 3px rgba(207,161,90,.25);}
 .oa-field input[aria-invalid="true"],.oa-field select[aria-invalid="true"]{border-color:var(--red);}
-.oa-field select option{color:#0a2342;}
+.oa-field select option{color:var(--text);background:var(--field-bg);}
 .oa-err{display:flex;align-items:center;gap:5px;font-size:.75rem;color:var(--red);font-weight:600;}
 .oa-form-error{margin:14px 0 0;color:#ffb3ab;font-size:.85rem;font-weight:600;text-align:center;}
 .oa-form-card .oa-form-error{color:var(--red);}
