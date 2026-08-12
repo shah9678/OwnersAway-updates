@@ -29,7 +29,7 @@ function FaqItem({ item, index, open, onToggle }) {
 }
 
 export default function Home() {
-  const [openFaq, setOpenFaq] = useState(0);
+  const [openFaq, setOpenFaq] = useState(-1);
 
   // All nav routes (/, /how, /services, ...) render this same page at a
   // different scroll position, so they all canonicalize to the homepage
