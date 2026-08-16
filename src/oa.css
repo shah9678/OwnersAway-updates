@@ -301,7 +301,13 @@ ul.oa-clean{padding:0;margin:0;list-style:none;}
 [data-theme="dark"] .oa-avatar{background:linear-gradient(135deg,#16305a,#0d1d38);color:var(--gold);}
 .oa-team-card h3{font-size:1.1rem;color:var(--text);margin:0 0 4px;}
 .oa-role{font-size:.8rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--gold);margin:0 0 10px;}
-.oa-bio{font-size:.9rem;color:var(--text-muted);line-height:1.6;margin:0;}
+.oa-bio{
+  font-size:.9rem;
+  color:var(--text-muted);
+  line-height:1.65;
+  margin:14px 0 0;
+  text-align:left;
+}
 .oa-avatar-img{width:88px;height:88px;border-radius:50%;object-fit:cover;margin:0 auto 16px;display:block;border:1px solid var(--border);}
 
 /* Anchor targets land below the sticky header instead of underneath it */
