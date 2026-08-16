@@ -130,7 +130,7 @@ export default function ApplyForm() {
             aria-describedby={invalid ? errId : undefined}
             onChange={(ev) => update(name, ev.target.value)}
           >
-            <option value="" disabled>Select…</option>
+            <option value="" >Select…</option>
             {opts.options.map((t) => <option key={t} value={t}>{t}</option>)}
           </select>
         ) : type === "textarea" ? (
