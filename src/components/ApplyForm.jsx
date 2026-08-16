@@ -125,7 +125,7 @@ export default function ApplyForm() {
         </label>
         {type === "select" ? (
           <select
-            id={name} value={values[name]}
+            id={name} value={values[name]} required={opts.required}
             aria-required={opts.required} aria-invalid={invalid}
             aria-describedby={invalid ? errId : undefined}
             onChange={(ev) => update(name, ev.target.value)}
