@@ -1,5 +1,6 @@
 import teamShivam from "./assets/team_shivam.jpg";
 import teamAdit from "./assets/team_adit.jpg";
+import teamAnkita from "./assets/team_ankita.jpg";
 
 export const NAV = [
   { label: "How It Works", to: "/how" },
@@ -99,26 +100,27 @@ export const TEAM = {
       photo: teamShivam,
       name: "Shivam Shah",
       role: "Founder & CEO",
-      bio: "Business owner turned operator. Leads coverage planning and every pilot engagement personally.",
+      bio: "Business owner and operator with firsthand experience navigating the challenges of stepping away from an owner-dependent business. Leads OwnerAway’s coverage strategy, operator standards, and pilot engagements with a focus on reliability, continuity, and owner confidence.",
     },
     {
       initials: "AS",
       photo: teamAdit,
       name: "Adit Shah",
       role: "Technology Lead",
-      bio: "Builds the systems behind daily reporting, coverage playbooks, and owner communication.",
+      bio: "Builds the technology and systems that power OwnerAway’s coverage experience-from daily reporting and operational playbooks to streamlined owner communication. Focused on creating reliable, scalable tools that give both owners and relief managers clarity, consistency, and confidence.",
     },
     {
-      initials: "TM",
-      name: "Your Name Here",
+      initials: "AS",
+      photo: teamAnkita,
+      name: "Ankita Shah",
       role: "Operations Lead",
-      bio: "Placeholder bio. A short two-line summary of experience and what they own at OwnerAway.",
+      bio: "As Operations Lead at OwnerAway, she turns that experience into reliable processes, clear standards, and practical support that help relief managers step in confidently and keep businesses running smoothly when owners step away.",
     },
     {
-      initials: "TM",
+      initials: "YOU",
       name: "Your Name Here",
-      role: "Coverage Operator",
-      bio: "Placeholder bio. A short two-line summary of experience and what they own at OwnerAway.",
+      role: "Your Next Role With OwnerAway",
+      bio: "We're looking for people who believe great businesses shouldn't depend on one person. Bring your expertise and help us build a smarter way for business owners to step away.",
     },
   ],
 };
