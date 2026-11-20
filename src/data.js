@@ -171,5 +171,5 @@ export const SOCIALS = {
   facebook: "https://www.facebook.com/ownerawayusa",
 };
 
-export const INQUIRY_EMAIL = "ownerawaystartup@gmail.com";
-export const WEB3FORMS_ACCESS_KEY = "bab9a0b5-5b80-449a-91ab-6ba42718bed8";
+export const INQUIRY_EMAIL = "inquiry@ownerawayusa.com";
+export const WEB3FORMS_ACCESS_KEY = "63257dfe-e59b-476d-baba-95c222638e0d";
