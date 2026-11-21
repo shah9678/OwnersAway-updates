@@ -115,9 +115,13 @@ export default function ApplyForm() {
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.email)) {
       e.email = "Enter a valid email address.";
     }
-
-    if (values.phone && !/^[\d\s()+.-]{7,}$/.test(values.phone)) {
-      e.phone = "Enter a valid phone number.";
+    const phoneDigits = values.phone.replace(/\D/g, "");
+    if (!values.phone.trim()) {
+      e.phone = "Please enter your phone number.";
+    } else if (!/^[\d\s()+.-]+$/.test(values.phone)) {
+      e.phone = "Please enter a valid phone number.";
+    } else if (phoneDigits.length !== 10) {
+      e.phone = "Please enter a valid 10-digit U.S. phone number.";
     }
 
     if (!values.termsAccepted) {
@@ -289,7 +293,11 @@ export default function ApplyForm() {
           placeholder: "Select state…",
         })}
         {field("email", "Email", "email", { required: true, auto: "email" })}
-        {field("phone", "Phone number", "tel", { auto: "tel" })}
+        {field("phone", "Phone", "Phone number", "tel", {
+          required: true,
+          auto: "tel",
+          maxLength: 14,
+        })}
         {field("revenue", "Estimated weekly revenue range", "select", {
           options: REVENUE_RANGES,
           full: true,
