@@ -252,6 +252,7 @@ export default function ApplyForm() {
             id={name}
             value={values[name]}
             required={opts.required}
+            autoComplete={opts.auto}
             aria-required={opts.required}
             aria-invalid={invalid}
             aria-describedby={invalid ? errId : undefined}
@@ -312,16 +313,6 @@ export default function ApplyForm() {
           required: true,
           auto: "organization",
         })}
-        {field("businessType", "Business type", "select", {
-          required: true,
-          options: BUSINESS_TYPES,
-        })}
-        {field("city", "City", "text", { auto: "address-level2" })}
-        {field("state", "State", "select", {
-          required: true,
-          options: US_STATES,
-          placeholder: "Select state…",
-        })}
         {field("email", "Email", "email", { required: true, auto: "email" })}
         {field("phone", "Phone", "tel", {
           required: true,
@@ -330,6 +321,21 @@ export default function ApplyForm() {
           placeholder: "(555) 123-4567",
           inputMode: "tel",
           onBlur: onPhoneBlur,
+        })}
+        {field("city", "City", "text", {
+          required: true,
+          auto: "address-level2",
+        })}
+        {field("state", "State", "select", {
+          required: true,
+          auto: "address-level1",
+          options: US_STATES,
+          placeholder: "Select state…",
+        })}
+        {field("businessType", "Business type", "select", {
+          required: true,
+          options: BUSINESS_TYPES,
+          full: true,
         })}
         {field("revenue", "Estimated weekly revenue range", "select", {
           options: REVENUE_RANGES,

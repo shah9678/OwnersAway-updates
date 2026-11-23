@@ -992,6 +992,24 @@ ul.oa-clean {
   background: var(--field-bg);
 }
 
+/* Browsers paint autofilled inputs with their own light background; mask it so all fields match */
+.oa-field input:-webkit-autofill,
+.oa-field input:-webkit-autofill:hover,
+.oa-field input:-webkit-autofill:focus,
+.oa-field select:-webkit-autofill,
+.oa-field select:-webkit-autofill:hover,
+.oa-field select:-webkit-autofill:focus {
+  -webkit-text-fill-color: var(--text);
+  caret-color: var(--text);
+  box-shadow: 0 0 0 1000px var(--field-bg) inset;
+  transition: background-color 9999s ease-in-out 0s;
+}
+
+.oa-field input:-webkit-autofill:focus,
+.oa-field select:-webkit-autofill:focus {
+  box-shadow: 0 0 0 1000px var(--field-bg) inset, 0 0 0 3px rgba(207, 161, 90, .25);
+}
+
 .oa-err {
   display: flex;
   align-items: center;
