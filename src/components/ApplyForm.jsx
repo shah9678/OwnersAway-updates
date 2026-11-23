@@ -61,6 +61,21 @@ const US_STATES = [
   "DC",
 ];
 
+const PHONE_ALLOWED = /^[\d\s()+.-]+$/;
+
+// Returns the 10-digit U.S. number (dropping a leading country code 1), or null if invalid
+const parsePhone = (raw) => {
+  if (!PHONE_ALLOWED.test(raw.trim())) return null;
+  const digits = raw.replace(/\D/g, "");
+  if (digits.length === 10) return digits;
+  if (digits.length === 11 && digits.startsWith("1")) return digits.slice(1);
+  return null;
+};
+
+const formatPhone = (d) => `(${d.slice(0, 3)}) ${d.slice(3, 6)}-${d.slice(6)}`;
+
+const PHONE_ERROR = "Enter a 10-digit U.S. phone number, e.g. (555) 123-4567.";
+
 export default function ApplyForm() {
   const empty = {
     fullName: "",
@@ -115,13 +130,10 @@ export default function ApplyForm() {
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.email)) {
       e.email = "Enter a valid email address.";
     }
-    const phoneDigits = values.phone.replace(/\D/g, "");
     if (!values.phone.trim()) {
       e.phone = "Please enter your phone number.";
-    } else if (!/^[\d\s()+.-]+$/.test(values.phone)) {
-      e.phone = "Please enter a valid phone number.";
-    } else if (phoneDigits.length !== 10) {
-      e.phone = "Please enter a valid 10-digit U.S. phone number.";
+    } else if (!parsePhone(values.phone)) {
+      e.phone = PHONE_ERROR;
     }
 
     if (!values.termsAccepted) {
@@ -132,7 +144,17 @@ export default function ApplyForm() {
     return e;
   };
 
-  const mailtoFallback = () => {
+  const onPhoneBlur = () => {
+    if (!values.phone.trim()) return;
+    const digits = parsePhone(values.phone);
+    if (digits) {
+      update("phone", formatPhone(digits));
+    } else {
+      setErrors((e) => ({ ...e, phone: PHONE_ERROR }));
+    }
+  };
+
+  const mailtoFallback = (phone) => {
     const lines = [
       `Full name: ${values.fullName}`,
       `Business name: ${values.businessName}`,
@@ -140,7 +162,7 @@ export default function ApplyForm() {
       `City: ${values.city || "—"}`,
       `State: ${values.state || "—"}`,
       `Email: ${values.email}`,
-      `Phone: ${values.phone || "—"}`,
+      `Phone: ${phone || "—"}`,
       `Estimated weekly revenue: ${values.revenue || "—"}`,
       `Biggest concern: ${values.concern || "—"}`,
     ].join("\n");
@@ -152,6 +174,9 @@ export default function ApplyForm() {
     const e = validate();
     setErrors(e);
     if (Object.keys(e).length) return;
+    const phoneDigits = parsePhone(values.phone);
+    const phone = formatPhone(phoneDigits);
+    if (phone !== values.phone) update("phone", phone);
     setSending(true);
     setFormError("");
     try {
@@ -167,6 +192,7 @@ export default function ApplyForm() {
             subject: `Pilot coverage request — ${values.businessName}`,
             from_name: "OwnerAway Website",
             ...values,
+            phone,
             termsAccepted: values.termsAccepted ? "Yes" : "No",
             termsVersion: "2026-08-10",
             privacyVersion: "2026-08-10",
@@ -176,7 +202,7 @@ export default function ApplyForm() {
         const data = await res.json();
         if (!data.success) throw new Error(data.message || "Submission failed");
       } else {
-        mailtoFallback();
+        mailtoFallback(phone);
       }
       setSubmitted(true);
     } catch (err) {
@@ -252,10 +278,14 @@ export default function ApplyForm() {
             type={type}
             value={values[name]}
             autoComplete={opts.auto}
+            maxLength={opts.maxLength}
+            placeholder={opts.placeholder}
+            inputMode={opts.inputMode}
             aria-required={opts.required}
             aria-invalid={invalid}
             aria-describedby={invalid ? errId : undefined}
             onChange={(ev) => update(name, ev.target.value)}
+            onBlur={opts.onBlur}
             onKeyDown={(ev) => ev.key === "Enter" && submit()}
           />
         )}
@@ -293,10 +323,13 @@ export default function ApplyForm() {
           placeholder: "Select state…",
         })}
         {field("email", "Email", "email", { required: true, auto: "email" })}
-        {field("phone", "Phone", "Phone number", "tel", {
+        {field("phone", "Phone", "tel", {
           required: true,
           auto: "tel",
-          maxLength: 14,
+          maxLength: 20,
+          placeholder: "(555) 123-4567",
+          inputMode: "tel",
+          onBlur: onPhoneBlur,
         })}
         {field("revenue", "Estimated weekly revenue range", "select", {
           options: REVENUE_RANGES,
